@@ -8,7 +8,14 @@ function getComputerChoice() {
   } else {
     return "scissors";
   }
-
-  // Test that the function
-  console.log(getComputerChoice());
 }
+
+// Prompt the user for their choice
+function getHumanChoice() {
+  const userInput = prompt("Enter your choice: rock, paper or scissors");
+  return userInput;
+}
+
+// Test the functions
+console.log(getComputerChoice());
+console.log(getHumanChoice());
