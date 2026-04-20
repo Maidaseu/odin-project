@@ -24,6 +24,30 @@ function getComputerChoice() {
   }
 }
 
+function addResultMessage(message, type = "normal") {
+  const messageDiv = document.createElement("div");
+  messageDiv.className = "result-entry";
+
+  // Add emoji based on message type
+  if (type === "win") {
+    messageDiv.style.color = "#27ae60";
+    messageDiv.style.fontWeight = "bold";
+    messageDiv.innerHTML = "✅ " + message;
+  } else if (type === "lose") {
+    messageDiv.style.color = "#e74c3c";
+    messageDiv.innerHTML = "❌ " + message;
+  } else if (type === "tie") {
+    messageDiv.style.color = "#f39c12";
+    messageDiv.innerHTML = "🤝 " + message;
+  } else {
+    messageDiv.innerHTML = message;
+  }
+
+  resultsDiv.appendChild(messageDiv);
+  // Auto-scroll to show the latest message
+  messageDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
 // Prompt the user for their choice
 function getHumanChoice() {
   const userInput = prompt("Enter your choice: rock, paper or scissors");
