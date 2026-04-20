@@ -75,6 +75,12 @@ function playRound(humanChoice, computerChoice) {
 
   return resultMessage;
 
+  // COMMIT 5: "Add score display update function"
+
+  function updateScoreDisplay() {
+    scoreDiv.textContent = `📊 Score - You: ${humanScore} | Computer: ${computerScore}`;
+  }
+
   // Play 5 rounds
   for (let i = 1; i <= 5; i++) {
     console.log(`\n--- Round ${i} ---`);
