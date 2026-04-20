@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+
+/* Global Styles */
+* {
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #1F2937;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+section {
+    padding: 60px 0px;
+}
+
+/* Layout with Flexbox Section */
+
+/* Container */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+/* Header background color */
+
+.header {
+    background-color: #1F2937;
+}
+
+/* Flex Layout */
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* Logo Styles */
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #F9FAFB;
+}
+
+/* Navigation Links */
+
+.nav ul {
+    display: flex;
+    gap: 24px;
+}
+
+.nav a {
+    font-size: 18px;
+    color: #E5E7EB;
+}
+
+/* Hero Section */
+
+.hero {
+    background-color: #1F2937;
+    padding: 80px 0px;
+}
+
+/* Turn .hero-container into a flex layout */
+.hero-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Keeps text from stretching too wide.  */
+.hero-text {
+    max-width: 500px;
+}
+
+/* Hero Heading Styles */
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: 900;
+    color: #F9FAF8;
+    margin-bottom: 16px;
+}
+
+/* Hero Paragraph Styles */
+.hero-text p {
+    font-size: 18px;
+    color: #E5E7EB;
+    margin-bottom: 24px;
+}
+
+/* Hero Button Styles */
+.hero-text button {
+    background-color: #3882F6;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 10px 28px;
+}
+
+/* Hero Image Styles */
+.image-placeholder {
+    background-color: #6B7280;
+    color: #FFFFFF;
+    width: 400px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* Section spacing & heading */
+.info {
+    text-align: center;
+}
+
+.info h2 {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1F2937;
+    margin-bottom: 48px;
+}
+
+/* Layout for info cards using Flexbox */
+.info-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Card container styling */
+
+.card {
+    max-width: 160px;
+}
+
+
+/* Blue outline boxes */
+.card-box {
+    width: 160px;
+    height: 160px;
+    border: 4px solid #3882F6;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+/* Card title styling */
+.card p {
+    font-size: 16px;
+    color: #1F2937;
+}
+
+/* Quote Section Styles */
+.quote {
+    background-color: #E5E7EB;
+}
+
+/* Center the quote content */
+.quote-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Quote text styling */
+.quote-text {
+    font-size: 36px;
+    font-style: italic;
+    font-weight: 300;
+    color: #1F2937;
+    margin-bottom: 24px;
+}
+
+/* Author text styling */
+.quote-author {
+    text-align: right;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+/* CTA section spacing */
+.cta {
+    padding: 80px 0px;
+}
+
+/* CTA box layout */
+.cta-box {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #3882F6;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+}
+
+/* CTA text styling */
+.cta-text h3 {
+    color: #F9FAF8;
+    font-size: 24px;
+    font-weight: 700;
+}  
+
+.cta-text p {
+    color: #E5E7EB;
+}
+
+/* CTA button styling */
+.cta button {
+    background-color: transparent;
+    color: #F9FAF8;
+    border: 2px solid #F9FAF8;
+    padding: 10px 32px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #1F2937;
+    color: #E5E7EB;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 14px;
+}
+
+/* Extra polish */
+button:hover {
+    opacity: 0.9;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
