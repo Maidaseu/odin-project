@@ -48,38 +48,32 @@ function addResultMessage(message, type = "normal") {
   messageDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-// Prompt the user for their choice
-function getHumanChoice() {
-  const userInput = prompt("Enter your choice: rock, paper or scissors");
-  return userInput.toLocaleLowerCase();
-}
+function playRound(humanChoice, computerChoice) {
+  let resultMessage = "";
+  let resultType = "";
 
-// Play game function
-function playGame() {
-  // initalise score variables
-  let humanScore = 0;
-  let computerScore = 0;
-
-  //
-  function playRound(humanChoice, computerChoice) {
-    // Make humanChoice case-insensitive
-    humanChoice = humanChoice.toLowerCase();
-
-    // Determine the winner of the round
-    if (humanChoice === computerChoice) {
-      return "it's a tie!";
-    } else if (
-      (humanChoice === "rock" && computerChoice === "scissors") ||
-      (humanChoice === "paper" && computerChoice === "rock") ||
-      (humanChoice === "scissors" && computerChoice === "paper")
-    ) {
-      humanScore++;
-      return "You win! " + humanChoice + " beats " + computerChoice;
-    } else {
-      computerScore++;
-      return "You lose! " + computerChoice + " beats " + humanChoice;
-    }
+  // Determine the winner of the round (same logic as original)
+  if (humanChoice === computerChoice) {
+    resultMessage = `It's a tie! Both chose ${humanChoice}`;
+    resultType = "tie";
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    humanScore++; // Increment player score
+    resultMessage = `You win! ${humanChoice} beats ${computerChoice}`;
+    resultType = "win";
+  } else {
+    computerScore++; // Increment computer score
+    resultMessage = `You lose! ${computerChoice} beats ${humanChoice}`;
+    resultType = "lose";
   }
+
+  // Update DOM with the round result (replaces console.log)
+  addResultMessage(resultMessage, resultType);
+
+  return resultMessage;
 
   // Play 5 rounds
   for (let i = 1; i <= 5; i++) {
