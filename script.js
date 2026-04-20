@@ -1,3 +1,17 @@
+// Get all DOM elements to interact with
+const rockBtn = document.getElementById("rock");
+const paperBtn = document.getElementById("paper");
+const scissorsBtn = document.getElementById("scissors");
+const resetBtn = document.getElementById("reset");
+const resultsDiv = document.getElementById("results");
+const scoreDiv = document.getElementById("score");
+const winnerDiv = document.getElementById("winner");
+
+// Initialize game state variables
+let humanScore = 0; // Track player's score
+let computerScore = 0; // Track computer's score
+let gameOver = false; // Flag to check if game has ended
+
 // Write out the logic for the game
 function getComputerChoice() {
   const random = Math.random();
