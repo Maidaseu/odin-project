@@ -81,6 +81,34 @@ function playRound(humanChoice, computerChoice) {
     scoreDiv.textContent = `📊 Score - You: ${humanScore} | Computer: ${computerScore}`;
   }
 
+  /**
+   * Resets the game to its initial state
+   */
+  function resetGame() {
+    // Reset scores
+    humanScore = 0;
+    computerScore = 0;
+    gameOver = false;
+
+    // Clear the results display
+    resultsDiv.innerHTML = "";
+
+    // Reset displays
+    updateScoreDisplay();
+    winnerDiv.textContent = "";
+    winnerDiv.style.backgroundColor = "";
+    winnerDiv.classList.remove("winner-announcement");
+
+    // Re-enable buttons
+    disableGameButtons(false);
+
+    // Add reset confirmation message
+    addResultMessage(
+      "🔄 Game reset! Make your choice to start playing.",
+      "normal",
+    );
+  }
+
   // Play 5 rounds
   for (let i = 1; i <= 5; i++) {
     console.log(`\n--- Round ${i} ---`);
