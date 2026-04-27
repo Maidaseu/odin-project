@@ -47,3 +47,9 @@ let operator = null;
 
 // Controls whether display should reset on next input
 let shouldResetDisplay = false;
+
+const display = document.getElementById("display");
+
+function updateDisplay(value) {
+  display.textContent = value;
+}
