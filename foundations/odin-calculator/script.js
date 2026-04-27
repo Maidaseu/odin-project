@@ -35,3 +35,15 @@ function operate(operator, a, b) {
       return null;
   }
 }
+
+// Stores first number entered
+let firstNumber = "";
+
+// Stores second number entered
+let secondNumber = "";
+
+// Stores selected operator (+, -, *, /)
+let operator = null;
+
+// Controls whether display should reset on next input
+let shouldResetDisplay = false;
