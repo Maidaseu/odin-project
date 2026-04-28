@@ -16,9 +16,9 @@ function divide(a, b) {
   return a / b;
 }
 
-// Select the correct operation based on the operator
 function operate(operator, a, b) {
-  // Convert inputs (UI gives strings)
+  // Determines which operation to run based on the operator symbol.
+  // Converts string inputs (from UI) into numbers before calculation.
   a = Number(a);
   b = Number(b);
 
@@ -35,6 +35,9 @@ function operate(operator, a, b) {
       return null;
   }
 }
+
+// APPLICATION STATE
+// Stores the current state of the calculator.
 
 // Stores first number entered
 let firstNumber = "";
@@ -53,3 +56,14 @@ const display = document.getElementById("display");
 function updateDisplay(value) {
   display.textContent = value;
 }
+
+// DISPLAY MANAGEMENT
+// Handles all updates to the screen
+
+const numberButtons = document.querySelectorAll(".number");
+
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    appendNumber(button.textContent);
+  });
+});
