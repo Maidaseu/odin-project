@@ -67,3 +67,34 @@ numberButtons.forEach((button) => {
     appendNumber(button.textContent);
   });
 });
+
+// OPERATOR HANDLING
+// Handles +, -, *, / button clicks
+// When an operator is clicked, it sets the current operator and prepares for the next number input.
+
+const operatorButtons = document.querySelectorAll(".operator");
+
+// Attach click event to each operator button
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    chooseOperator(button.textContent);
+  });
+});
+
+// Sets operator and handles chained calculations
+function chooseOperator(op) {
+  // Prevent operator selection without a first number
+  if (firstNumber === "") return;
+
+  // If second number exists, evaluate previous expression first
+  // This allows chaining (e.g. 12 + 7 - 1)
+  if (secondNumber !== "") {
+    const result = operate(operator, firstNumber, secondNumber);
+    updateDisplay(result);
+    firstNumber = result;
+    secondNumber = "";
+  }
+
+  operator = op;
+  shouldResetDisplay = true;
+}
