@@ -98,3 +98,27 @@ function chooseOperator(op) {
   operator = op;
   shouldResetDisplay = true;
 }
+
+// Handles number input and updates display
+function appendNumber(number) {
+  // Prevent multiple decimals
+  if (number === "." && display.textContent.includes(".")) return;
+
+  if (shouldResetDisplay) {
+    updateDisplay(number);
+    shouldResetDisplay = false;
+  } else {
+    if (display.textContent === "0") {
+      updateDisplay(number);
+    } else {
+      updateDisplay(display.textContent + number);
+    }
+  }
+
+  // Store values based on state
+  if (operator === null) {
+    firstNumber = display.textContent;
+  } else {
+    secondNumber = display.textContent;
+  }
+}
