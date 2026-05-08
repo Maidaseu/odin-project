@@ -122,3 +122,36 @@ function appendNumber(number) {
     secondNumber = display.textContent;
   }
 }
+
+// EQUALS BUTTON HANDLING
+// Runs calculation when user presses "="
+
+const equalsButton = document.getElementById("equals");
+
+// Attach click event to equals button
+equalsButton.addEventListener("click", evaluate);
+
+// Executes current calculation and updates display
+function evaluate() {
+  // Prevent evaluation if expression is incomplete
+  if (firstNumber === "" || operator === null || secondNumber === "") return;
+
+  // Perform calculation
+  let result = operate(operator, firstNumber, secondNumber);
+
+  // Round long decimal results
+  result = formatResult(result);
+
+  // Show result on calculator display
+  updateDisplay(result);
+
+  // Store result for future chained calculations
+  firstNumber = result;
+
+  // Reset second number and operator
+  secondNumber = "";
+  operator = null;
+
+  // Next number input should replace current display
+  shouldResetDisplay = true;
+}
