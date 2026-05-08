@@ -155,3 +155,21 @@ function evaluate() {
   // Next number input should replace current display
   shouldResetDisplay = true;
 }
+
+// Resets calculator back to default state
+
+const clearButton = document.querySelector(".clear");
+
+// Attach click event to clear button
+clearButton.addEventListener("click", clear);
+
+// Clears calculator state and resets display
+function clear() {
+  firstNumber = "";
+  secondNumber = "";
+  operator = null;
+  shouldResetDisplay = false;
+
+  // Reset display back to default value
+  updateDisplay("0");
+}
