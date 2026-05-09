@@ -1,113 +1,109 @@
-// Executes a calculation based on the given operator and operands
+// ==============================
+// BASIC MATH OPERATIONS
+// Pure functions used to perform calculations
+// ==============================
+
+// Adds two numbers
 function add(a, b) {
   return a + b;
 }
 
+// Subtracts second number from first number
 function subtract(a, b) {
   return a - b;
 }
 
+// Multiplies two numbers
 function multiply(a, b) {
   return a * b;
 }
 
+// Divides first number by second number
 function divide(a, b) {
+  // Prevent division by zero
   if (b === 0) return "Nice try. Can't divide by 0 😏";
+
   return a / b;
 }
 
+// Determines which operation to execute
 function operate(operator, a, b) {
-  // Determines which operation to run based on the operator symbol.
-  // Converts string inputs (from UI) into numbers before calculation.
+  // Convert string inputs from UI into numbers
   a = Number(a);
   b = Number(b);
 
   switch (operator) {
     case "+":
       return add(a, b);
+
     case "-":
       return subtract(a, b);
+
     case "*":
       return multiply(a, b);
+
     case "/":
       return divide(a, b);
+
     default:
       return null;
   }
 }
 
+// ==============================
 // APPLICATION STATE
-// Stores the current state of the calculator.
+// Stores calculator data between interactions
+// ==============================
 
-// Stores first number entered
+// Stores first number entered by user
 let firstNumber = "";
 
-// Stores second number entered
+// Stores second number entered by user
 let secondNumber = "";
 
-// Stores selected operator (+, -, *, /)
+// Stores currently selected operator
 let operator = null;
 
-// Controls whether display should reset on next input
+// Determines whether next input should reset display
 let shouldResetDisplay = false;
+
+// ==============================
+// DISPLAY MANAGEMENT
+// Controls calculator screen updates
+// ==============================
 
 const display = document.getElementById("display");
 
+// Updates calculator display with new value
 function updateDisplay(value) {
   display.textContent = value;
 }
 
-// DISPLAY MANAGEMENT
-// Handles all updates to the screen
+// ==============================
+// NUMBER INPUT HANDLING
+// Handles digit and decimal button clicks
+// ==============================
 
 const numberButtons = document.querySelectorAll(".number");
 
+// Add click listener to every number button
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     appendNumber(button.textContent);
   });
 });
 
-// OPERATOR HANDLING
-// Handles +, -, *, / button clicks
-// When an operator is clicked, it sets the current operator and prepares for the next number input.
-
-const operatorButtons = document.querySelectorAll(".operator");
-
-// Attach click event to each operator button
-operatorButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    chooseOperator(button.textContent);
-  });
-});
-
-// Sets operator and handles chained calculations
-function chooseOperator(op) {
-  // Prevent operator selection without a first number
-  if (firstNumber === "") return;
-
-  // If second number exists, evaluate previous expression first
-  // This allows chaining (e.g. 12 + 7 - 1)
-  if (secondNumber !== "") {
-    const result = operate(operator, firstNumber, secondNumber);
-    updateDisplay(result);
-    firstNumber = result;
-    secondNumber = "";
-  }
-
-  operator = op;
-  shouldResetDisplay = true;
-}
-
 // Handles number input and updates display
 function appendNumber(number) {
-  // Prevent multiple decimals
+  // Prevent multiple decimal points
   if (number === "." && display.textContent.includes(".")) return;
 
+  // Replace display after operator or equals press
   if (shouldResetDisplay) {
     updateDisplay(number);
     shouldResetDisplay = false;
   } else {
+    // Replace default 0 or append number
     if (display.textContent === "0") {
       updateDisplay(number);
     } else {
@@ -115,7 +111,7 @@ function appendNumber(number) {
     }
   }
 
-  // Store values based on state
+  // Store number depending on calculator state
   if (operator === null) {
     firstNumber = display.textContent;
   } else {
@@ -123,44 +119,99 @@ function appendNumber(number) {
   }
 }
 
+// ==============================
+// OPERATOR HANDLING
+// Handles operator selection and chained calculations
+// ==============================
+
+const operatorButtons = document.querySelectorAll(".operator");
+
+// Add click listener to every operator button
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    chooseOperator(button.textContent);
+  });
+});
+
+// Sets operator and handles chained operations
+function chooseOperator(op) {
+  // Prevent operator selection before entering first number
+  if (firstNumber === "") return;
+
+  // Prevent repeated operator presses
+  // Example: 2 + + + should only keep latest operator
+  if (operator !== null && secondNumber === "") {
+    operator = op;
+    return;
+  }
+
+  // Evaluate existing expression before continuing
+  // Enables chaining like: 12 + 7 - 1
+  if (secondNumber !== "") {
+    let result = operate(operator, firstNumber, secondNumber);
+
+    // Round long decimal results
+    result = formatResult(result);
+
+    // Update display and calculator state
+    updateDisplay(result);
+
+    firstNumber = result;
+    secondNumber = "";
+  }
+
+  // Store selected operator
+  operator = op;
+
+  // Next number input should replace display
+  shouldResetDisplay = true;
+}
+
+// ==============================
 // EQUALS BUTTON HANDLING
-// Runs calculation when user presses "="
+// Executes calculation when "=" is pressed
+// ==============================
 
 const equalsButton = document.getElementById("equals");
 
-// Attach click event to equals button
+// Add click listener to equals button
 equalsButton.addEventListener("click", evaluate);
 
-// Executes current calculation and updates display
+// Performs calculation and displays result
 function evaluate() {
   // Prevent evaluation if expression is incomplete
-  if (firstNumber === "" || operator === null || secondNumber === "") return;
+  if (firstNumber === "" || operator === null || secondNumber === "") {
+    return;
+  }
 
-  // Perform calculation
+  // Execute calculation
   let result = operate(operator, firstNumber, secondNumber);
 
-  // Round long decimal results
+  // Round decimal results
   result = formatResult(result);
 
-  // Show result on calculator display
+  // Display final result
   updateDisplay(result);
 
   // Store result for future chained calculations
   firstNumber = result;
 
-  // Reset second number and operator
+  // Reset operator and second number
   secondNumber = "";
   operator = null;
 
-  // Next number input should replace current display
+  // Next number input should reset display
   shouldResetDisplay = true;
 }
 
-// Resets calculator back to default state
+// ==============================
+// CLEAR BUTTON HANDLING
+// Resets calculator to default state
+// ==============================
 
 const clearButton = document.querySelector(".clear");
 
-// Attach click event to clear button
+// Add click listener to clear button
 clearButton.addEventListener("click", clear);
 
 // Clears calculator state and resets display
@@ -170,6 +221,18 @@ function clear() {
   operator = null;
   shouldResetDisplay = false;
 
-  // Reset display back to default value
   updateDisplay("0");
+}
+
+// ==============================
+// RESULT FORMATTING
+// Prevents long decimal overflow
+// ==============================
+
+// Rounds decimal values to 3 decimal places
+function formatResult(result) {
+  // Skip rounding for error messages
+  if (typeof result === "string") return result;
+
+  return Math.round(result * 1000) / 1000;
 }
