@@ -9,3 +9,17 @@ body {
 
   font-family: Arial, sans-serif;
 }
+
+.calculator {
+  display: grid;
+
+  grid-template-columns: repeat(4, 80px);
+
+  gap: 10px;
+
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 10px;
+}
