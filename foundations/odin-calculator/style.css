@@ -23,3 +23,22 @@ body {
 
   border-radius: 10px;
 }
+
+#display {
+  grid-column: span 4;
+
+  height: 60px;
+
+  background: #222;
+  color: white;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 0 15px;
+
+  font-size: 2rem;
+
+  border-radius: 5px;
+}
