@@ -42,3 +42,15 @@ body {
 
   border-radius: 5px;
 }
+
+button {
+  height: 60px;
+
+  font-size: 1.2rem;
+
+  border: none;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+}
