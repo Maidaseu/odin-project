@@ -21,7 +21,7 @@ function multiply(a, b) {
 // Divides first number by second number
 function divide(a, b) {
   // Prevent division by zero
-  if (b === 0) return "Nice try. Can't divide by 0 😏";
+  if (b === 0) return "Nice try";
 
   return a / b;
 }
