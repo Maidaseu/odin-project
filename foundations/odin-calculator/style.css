@@ -58,3 +58,7 @@ button {
 button:hover {
   opacity: 0.8;
 }
+
+.zero {
+  grid-column: span 4;
+}
