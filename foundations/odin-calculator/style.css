@@ -41,6 +41,12 @@ body {
   font-size: 2rem;
 
   border-radius: 5px;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  font-weight: bold;
 }
 
 button {
