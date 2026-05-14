@@ -68,3 +68,7 @@ button:hover {
 .zero {
   grid-column: span 4;
 }
+
+button:active {
+  transform: scale(0.97);
+}
